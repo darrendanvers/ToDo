@@ -1,0 +1,8 @@
+# User settings
+xcuserdata/
+
+# AppCode 
+.idea/
+
+# General Mac files
+.DS_Store
