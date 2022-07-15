@@ -16,6 +16,7 @@
 		958BDBF42880C16F005B4429 /* ToDoUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958BDBF32880C16F005B4429 /* ToDoUITestsLaunchTests.swift */; };
 		958BDC022880C26F005B4429 /* ToDo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958BDC012880C26F005B4429 /* ToDo.swift */; };
 		958BDC042880C3D0005B4429 /* ToDoListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958BDC032880C3D0005B4429 /* ToDoListView.swift */; };
+		958BDC062881A649005B4429 /* ToDoStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958BDC052881A649005B4429 /* ToDoStore.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +49,7 @@
 		958BDBF32880C16F005B4429 /* ToDoUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		958BDC012880C26F005B4429 /* ToDo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDo.swift; sourceTree = "<group>"; };
 		958BDC032880C3D0005B4429 /* ToDoListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoListView.swift; sourceTree = "<group>"; };
+		958BDC052881A649005B4429 /* ToDoStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoStore.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,10 +102,11 @@
 			children = (
 				958BDBD62880C16D005B4429 /* ToDoApp.swift */,
 				958BDBD82880C16D005B4429 /* AllItemsView.swift */,
+				958BDC032880C3D0005B4429 /* ToDoListView.swift */,
+				958BDC052881A649005B4429 /* ToDoStore.swift */,
 				958BDBDA2880C16F005B4429 /* Assets.xcassets */,
 				958BDC002880C257005B4429 /* Model */,
 				958BDBDC2880C16F005B4429 /* Preview Content */,
-				958BDC032880C3D0005B4429 /* ToDoListView.swift */,
 			);
 			path = ToDo;
 			sourceTree = "<group>";
@@ -271,6 +274,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				958BDC062881A649005B4429 /* ToDoStore.swift in Sources */,
 				958BDC022880C26F005B4429 /* ToDo.swift in Sources */,
 				958BDBD92880C16D005B4429 /* AllItemsView.swift in Sources */,
 				958BDC042880C3D0005B4429 /* ToDoListView.swift in Sources */,

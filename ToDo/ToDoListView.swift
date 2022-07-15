@@ -18,6 +18,7 @@ struct ToDoListView: View {
         List {
             ForEach($toDos) { $toDo in
                 Text(toDo.toDo)
+                    .strikethrough(toDo.isDone)
             }
         }
     }
@@ -25,7 +26,7 @@ struct ToDoListView: View {
 
 struct ToDoListView_Previews: PreviewProvider {
     
-    static let sampleData = [ToDo(toDo: "Thing one"), ToDo(toDo: "Thing two")]
+    static let sampleData = [ToDo(toDo: "Thing one"), ToDo(isDone: true, toDo: "Thing two")]
     
     static var previews: some View {
         ToDoListView(toDos: .constant(sampleData))

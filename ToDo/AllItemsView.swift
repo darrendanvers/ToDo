@@ -8,14 +8,20 @@
 import SwiftUI
 
 struct AllItemsView: View {
+    
+    @Binding var toDos: [ToDo]
+    
     var body: some View {
-        Text("Hello, world!")
+        ToDoListView(toDos: self.$toDos)
             .padding()
     }
 }
 
 struct AllItemsView_Previews: PreviewProvider {
+    
+    static let sampleData = [ToDo(toDo: "Thing one"), ToDo(isDone: true, toDo: "Thing two")]
+    
     static var previews: some View {
-        AllItemsView()
+        AllItemsView(toDos: .constant(sampleData))
     }
 }
