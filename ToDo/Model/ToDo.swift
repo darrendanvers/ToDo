@@ -19,4 +19,12 @@ struct ToDo: Identifiable {
         self.toDo = toDo
         self.isDone = isDone
     }
+    
+    mutating func complete() {
+        self.isDone = true
+    }
+    
+    mutating func uncomplete() {
+        self.isDone = false
+    }
 }

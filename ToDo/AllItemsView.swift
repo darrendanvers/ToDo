@@ -16,7 +16,7 @@ struct AllItemsView: View {
         
         VStack {
             HStack {
-                TextField("I need to...", text: $newToDo)
+                TextField("I will...", text: $newToDo)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                 
                 Button(action: {

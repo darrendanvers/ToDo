@@ -25,10 +25,10 @@ struct ToDoListView: View {
                     .gesture(DragGesture(minimumDistance: 0, coordinateSpace: .local)
                         .onEnded({value in
                             if value.translation.width < 0 {
-                                toDo.isDone = true
+                                toDo.complete()
                             }
                             if value.translation.width > 0 {
-                                toDo.isDone = false
+                                toDo.uncomplete()
                             }
                         }))
             }
