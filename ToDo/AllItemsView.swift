@@ -31,6 +31,7 @@ struct AllItemsView: View {
                     self.newToDo = ""
                 }) {
                     Image(systemName: "plus")
+                        .accessibilityLabel("Add to do")
                 }
             }
             .padding()

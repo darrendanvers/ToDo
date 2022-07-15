@@ -13,6 +13,7 @@ import SwiftUI
 struct ToDoApp: App {
     
     @StateObject private var toDoStore = ToDoStore()
+    private var toDoLoader: ToDoLoader = FileStoreToDoLoader()
     
     var body: some Scene {
         WindowGroup {
@@ -21,7 +22,7 @@ struct ToDoApp: App {
                     // Saves to-dos when the application goes inactive.
                     Task {
                         do {
-                            try await ToDoStore.save(toDos: toDoStore.toDos)
+                            try await self.toDoLoader.save(toDos: toDoStore.toDos)
                         } catch {
                             fatalError(error.localizedDescription)
                         }
@@ -32,7 +33,7 @@ struct ToDoApp: App {
             // Load the to-dos from disk when the application starts up.
             .task {
                 do {
-                    toDoStore.toDos = try await ToDoStore.load()
+                    toDoStore.toDos = try await self.toDoLoader.load()
                 } catch {
                     fatalError(error.localizedDescription)
                 }

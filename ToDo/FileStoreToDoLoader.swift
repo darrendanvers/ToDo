@@ -1,9 +1,6 @@
 //
-//  ToDoStore.swift
+//  FileStoreToDoLoader.swift
 //  ToDo
-//
-//  The class that contains the application's to-do list and the
-//  functions to read and write that list to the file system.
 //
 //  Created by Darren Danvers on 7/15/22.
 //
@@ -11,9 +8,7 @@
 import Foundation
 import SwiftUI
 
-class ToDoStore: ObservableObject {
-    
-    @Published var toDos: [ToDo] = []
+struct FileStoreToDoLoader: ToDoLoader {
     
     // Genrates the URL to the location to store to-dos on disk.
     private static func fileURL() throws -> URL {
@@ -22,7 +17,7 @@ class ToDoStore: ObservableObject {
     }
     
     // Wrapper around the the load function to allow for the new style of async/await.
-    static func load() async throws -> [ToDo] {
+    func load() async throws -> [ToDo] {
         try await withCheckedThrowingContinuation { continuation in
             load { result in
                 
@@ -37,11 +32,11 @@ class ToDoStore: ObservableObject {
     }
     
     // Loads the list of to-dos from disk.
-    static func load(completion: @escaping (Result<[ToDo], Error>) -> Void) {
+    private func load(completion: @escaping (Result<[ToDo], Error>) -> Void) {
          
         DispatchQueue.global(qos: .background).async {
             do {
-                let fileURL = try fileURL()
+                let fileURL = try FileStoreToDoLoader.fileURL()
                 guard let file = try? FileHandle(forReadingFrom: fileURL) else {
                     DispatchQueue.main.async {
                         completion(.success([]))
@@ -62,7 +57,7 @@ class ToDoStore: ObservableObject {
     
     // Wrapper around the the save function to allow for the new style of async/await.
     @discardableResult
-    static func save(toDos: [ToDo]) async throws -> Int {
+    func save(toDos: [ToDo]) async throws -> Int {
         try await withCheckedThrowingContinuation { continuation in
             save(toDos: toDos) { result in
                 switch result {
@@ -76,12 +71,12 @@ class ToDoStore: ObservableObject {
     }
     
     // Saves the list of to-dos to disk.
-    static func save(toDos: [ToDo], completion: @escaping (Result<Int, Error>) -> Void) {
+    private func save(toDos: [ToDo], completion: @escaping (Result<Int, Error>) -> Void) {
         DispatchQueue.global(qos: .background).async {
             
             do {
                 let data = try JSONEncoder().encode(toDos)
-                let outFile = try ToDoStore.fileURL()
+                let outFile = try FileStoreToDoLoader.fileURL()
                 try data.write(to: outFile)
                 DispatchQueue.main.async {
                     completion(.success(toDos.count))
@@ -93,4 +88,5 @@ class ToDoStore: ObservableObject {
             }
         }
     }
+    
 }
