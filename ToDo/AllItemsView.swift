@@ -10,10 +10,31 @@ import SwiftUI
 struct AllItemsView: View {
     
     @Binding var toDos: [ToDo]
+    @State private var newToDo = ""
     
     var body: some View {
-        ToDoListView(toDos: self.$toDos)
+        
+        VStack {
+            HStack {
+                TextField("I need to...", text: $newToDo)
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                
+                Button(action: {
+                    guard !self.newToDo.isEmpty else {
+                        return
+                    }
+                    self.toDos.append(ToDo(toDo: self.newToDo))
+                    self.newToDo = ""
+                }) {
+                    Image(systemName: "plus")
+                }
+            }
             .padding()
+            
+            Spacer()
+            
+            ToDoListView(toDos: self.$toDos)
+        }
     }
 }
 
