@@ -9,7 +9,7 @@
 
 import Foundation
 
-struct ToDo: Identifiable {
+struct ToDo: Identifiable, Codable {
     let id: UUID
     let toDo: String
     var isDone: Bool

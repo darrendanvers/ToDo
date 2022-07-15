@@ -16,7 +16,16 @@ struct ToDoApp: App {
     
     var body: some Scene {
         WindowGroup {
-            AllItemsView(toDos: $toDoStore.toDos)
+            AllItemsView(toDos: $toDoStore.toDos) {
+                Task {
+                    do {
+                        try await toDoStore.save()
+                    } catch {
+                        fatalError(error.localizedDescription)
+                    }
+                }
+                
+            }
         }
     }
 }
