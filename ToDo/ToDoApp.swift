@@ -2,6 +2,8 @@
 //  ToDoApp.swift
 //  ToDo
 //
+//  Main application driver.
+//
 //  Created by Darren Danvers on 7/14/22.
 //
 
@@ -12,19 +14,28 @@ struct ToDoApp: App {
     
     @StateObject private var toDoStore = ToDoStore()
     
-    // sampleData = [ToDo(toDo: "Thing one"), ToDo(isDone: true, toDo: "Thing two")]
-    
     var body: some Scene {
         WindowGroup {
-            AllItemsView(toDos: $toDoStore.toDos) {
-                Task {
-                    do {
-                        try await toDoStore.save()
-                    } catch {
-                        fatalError(error.localizedDescription)
+            NavigationView {
+                AllItemsView(toDos: $toDoStore.toDos) {
+                    // Saves to-dos when the application goes inactive.
+                    Task {
+                        do {
+                            try await ToDoStore.save(toDos: toDoStore.toDos)
+                        } catch {
+                            fatalError(error.localizedDescription)
+                        }
                     }
+                    
                 }
-                
+            }
+            // Load the to-dos from disk when the application starts up.
+            .task {
+                do {
+                    toDoStore.toDos = try await ToDoStore.load()
+                } catch {
+                    fatalError(error.localizedDescription)
+                }
             }
         }
     }

@@ -2,6 +2,8 @@
 //  ContentView.swift
 //  ToDo
 //
+//  Main application view.
+//
 //  Created by Darren Danvers on 7/14/22.
 //
 
