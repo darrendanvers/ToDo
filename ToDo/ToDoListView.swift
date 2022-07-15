@@ -18,7 +18,19 @@ struct ToDoListView: View {
         List {
             ForEach($toDos) { $toDo in
                 Text(toDo.toDo)
+                    // Strike through the text if the to-do is done.
                     .strikethrough(toDo.isDone)
+                    // Allow the user to swipe left to say they are done
+                    // and right to undo.
+                    .gesture(DragGesture(minimumDistance: 0, coordinateSpace: .local)
+                        .onEnded({value in
+                            if value.translation.width < 0 {
+                                toDo.isDone = true
+                            }
+                            if value.translation.width > 0 {
+                                toDo.isDone = false
+                            }
+                        }))
             }
         }
     }
