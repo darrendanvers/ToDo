@@ -13,6 +13,8 @@ import SwiftUI
 struct ToDoApp: App {
     
     @StateObject private var toDoStore = ToDoStore()
+    @State private var errorWrapper: ErrorWrapper?
+    
     private var toDoLoader: ToDoLoader = RESTToDoLoader(url: URL(string: "http://localhost:8080")!)
     
     var body: some Scene {
@@ -24,7 +26,7 @@ struct ToDoApp: App {
                         do {
                             try await self.toDoLoader.save(toDos: toDoStore.toDos)
                         } catch {
-                            fatalError(error.localizedDescription)
+                            self.errorWrapper = ErrorWrapper(error: error, guidance: "Unable to save data. Try again later.")
                         }
                     }
                     
@@ -35,8 +37,11 @@ struct ToDoApp: App {
                 do {
                     toDoStore.toDos = try await self.toDoLoader.load()
                 } catch {
-                    fatalError(error.localizedDescription)
+                    self.errorWrapper = ErrorWrapper(error: error, guidance: "Unable to load data. Try again later.")
                 }
+            }
+            .sheet(item: self.$errorWrapper, onDismiss: { }) { wrapper in
+                ErrorView(errorWrapper: wrapper)
             }
         }
     }
