@@ -15,6 +15,7 @@ struct ToDoApp: App {
     @StateObject private var toDoStore = ToDoStore()
     @State private var errorWrapper: ErrorWrapper?
     
+//  Uncomment this line and comment out the next to use a REST service to provide data rather than a local file.
 //    private var toDoLoader: ToDoLoader = RESTToDoLoader(url: URL(string: "http://localhost:8080")!)
     private var toDoLoader: ToDoLoader = FileStoreToDoLoader()
     

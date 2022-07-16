@@ -20,9 +20,12 @@ struct AllItemsView: View {
         
         VStack {
             HStack {
+                // The text field that allows the user to enter
+                // a new to-do.
                 TextField("I will...", text: $newToDo)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                 
+                // The button that adds the new to-do to the list.
                 Button(action: {
                     guard !self.newToDo.isEmpty else {
                         return
@@ -38,7 +41,9 @@ struct AllItemsView: View {
             
             Spacer()
             
+            // Displays the list of to-dos.
             ToDoListView(toDos: self.$toDos)
+            
         }.onChange(of: scenePhase) { phase in
             if phase == .inactive { self.saveAction() }
         }
