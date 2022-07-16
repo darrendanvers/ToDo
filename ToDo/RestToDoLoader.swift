@@ -5,6 +5,14 @@
 //  Implementation of ToDoLoader that will use
 //  an external service to save and load to-dos.
 //
+//  To use this class, you'll need some sort of
+//  server running locally that will serve up
+//  a JSON representation of ToDo objects and
+//  has a POST operation on the same endpoint
+//  to save ToDo objects passed as JSON objects.
+//  If you don't have this, use the FileStoreToDoLoader
+//  class instead.
+//
 //  Created by Darren Danvers on 7/15/22.
 //
 
