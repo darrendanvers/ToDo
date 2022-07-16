@@ -54,6 +54,7 @@ struct RESTToDoLoader: ToDoLoader {
                 DispatchQueue.main.async {
                     completion(.failure(error))
                 }
+                return
             }
             
             if let data = data {
@@ -105,6 +106,7 @@ struct RESTToDoLoader: ToDoLoader {
                 DispatchQueue.main.async {
                     completion(.failure(error))
                 }
+                return
             }
             
             guard let httpResponse = response as? HTTPURLResponse else {
