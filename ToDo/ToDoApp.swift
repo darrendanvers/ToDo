@@ -13,7 +13,7 @@ import SwiftUI
 struct ToDoApp: App {
     
     @StateObject private var toDoStore = ToDoStore()
-    private var toDoLoader: ToDoLoader = FileStoreToDoLoader()
+    private var toDoLoader: ToDoLoader = RESTToDoLoader(url: URL(string: "http://localhost:8080")!)
     
     var body: some Scene {
         WindowGroup {
