@@ -6,3 +6,6 @@ xcuserdata/
 
 # General Mac files
 .DS_Store
+
+# Raw Image files
+assets-raw/
